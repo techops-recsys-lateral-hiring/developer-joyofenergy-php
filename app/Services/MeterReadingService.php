@@ -7,10 +7,13 @@ use App\Models\MeterReadingsInitialize;
 
 class MeterReadingService
 {
-    private $meterReadingInitializer;
+	private $meterReadingInitializer;
+	private $meterReadings;
+	private $meterAssociatedReadings;
 
     public function __construct(MeterReadingsInitialize $meterReadingInitializer){
-        $this->meterReadingInitializer = $meterReadingInitializer;
+	    $this->meterReadingInitializer = $meterReadingInitializer;
+	    $this->meterReadings = $this->meterReadingInitializer->electricityReadings;
     }
 
     public function getReadings($smartMeterId){
@@ -24,20 +27,22 @@ class MeterReadingService
         return $smartMeterIdReadings;
     }
 
+    public function generateMeterAssociatedReadings(){
+	
+	foreach ($this->meterReadings as $meterReading){
+	    $this->meterAssociatedReadings[$meterReading["smartMeterId"]] = $meterReading["electricityReadings"];
+        }
+    }
+
     public function storeReadings($smartMeterId, $readings)
     {
-        //    app(ModelHelper::class)->setFoo("DID THE POSTING JUST NOW...");
-        //print_r(app(ModelHelper::class)->getFoo());
+	    $this->generateMeterAssociatedReadings(); 
+	    if (!array_key_exists($smartMeterId, $this->meterAssociatedReadings)) {
+		    $this->meterAssociatedReadings[$smartMeterId] = [];
 
-//        if (array_key_exists($smartMeterId, $this->meterAssociatedReadings)) {
-//            print_r($this->meterAssociatedReadings[$smartMeterId]);
-//            foreach ($readings as $reading) {
-//                array_push($this->meterAssociatedReadings[$smartMeterId], $reading);
-//            }
-//            print_r($this->meterAssociatedReadings[$smartMeterId]);
-//            return ("SUCCESS");
-//        } else {
-//            return ("FAILED");
-//        }
+	    }
+            foreach ($readings as $reading) {
+                array_push($this->meterAssociatedReadings[$smartMeterId], $reading);
+            }
     }
 }

@@ -23,12 +23,7 @@ class MeterReadingController extends Controller
 
     public function storeReadings(Request $request)
     {
-        $res = $this->meterReadingService->storeReadings($request->all()["smartMeterId"], $request->all()["electricityReadings"]);
-        print_r(json_decode($res));
-        if ($res === "SUCCESS") {
+	    $this->meterReadingService->storeReadings($request->all()["smartMeterId"], $request->all()["electricityReadings"]);
             return response()->json("SUCCESS", 201);
-        } else {
-            return response()->json("ERROR OCCURRED", 500);
-        }
     }
 }
