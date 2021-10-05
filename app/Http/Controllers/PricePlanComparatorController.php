@@ -13,11 +13,12 @@ class PricePlanComparatorController extends Controller
         $this->pricePlanService = $pricePlanService;
     }
 
-    public function recommendCheapestPricePlans($smartMeterId, $limit = 0){
+    public function recommendCheapestPricePlans($smartMeterId){
+        $limit = $_GET['limit'];
         $recommendedPlans = $this->pricePlanService->getConsumptionCostOfElectricityReadingsForEachPricePlan($smartMeterId);
         $recommendedPlansAfterSorting = $this->sortPlans($recommendedPlans);
 
-        if($limit != 0 && $limit < count($recommendedPlans)){
+        if($limit != null && $limit < count($recommendedPlans)){
             $recommendedPlansAfterSorting = array_slice($recommendedPlansAfterSorting , 0, $limit);
         }
         return response()->json($recommendedPlansAfterSorting, 200);
