@@ -9,8 +9,8 @@ class MeterReadingService
 {
     private $meterReadingInitializer;
 
-    public function __construct(){
-        $this->meterReadingInitializer = new MeterReadingsInitialize();
+    public function __construct(MeterReadingsInitialize $meterReadingInitializer){
+        $this->meterReadingInitializer = $meterReadingInitializer;
     }
 
     public function getReadings($smartMeterId){

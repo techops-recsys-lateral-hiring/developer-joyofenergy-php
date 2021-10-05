@@ -12,9 +12,9 @@ class MeterReadingController extends Controller
 
     private $meterReadingService;
 
-    public function __construct()
+    public function __construct(MeterReadingService $meterReadingService)
     {
-        $this->meterReadingService = new MeterReadingService();
+        $this->meterReadingService = $meterReadingService;
     }
 
     public function getReading($smartMeterId) {

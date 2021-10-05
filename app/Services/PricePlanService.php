@@ -11,10 +11,10 @@ class PricePlanService
     private $meterReadingService;
     private $meterReadingInitializer;
 
-    public function __construct()
+    public function __construct(MeterReadingService $meterReadingService, MeterReadingsInitialize $meterReadingInitializer)
     {
-        $this->meterReadingService = new MeterReadingService();
-        $this->meterReadingInitializer = new MeterReadingsInitialize();
+        $this->meterReadingService = $meterReadingService;
+        $this->meterReadingInitializer = $meterReadingInitializer;
     }
 
     public function getConsumptionCostOfElectricityReadingsForEachPricePlan($smartMeterId){

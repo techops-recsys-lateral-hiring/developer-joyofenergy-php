@@ -9,8 +9,8 @@ class PricePlanComparatorController extends Controller
 {
     private $pricePlanService;
 
-    public function __construct(){
-        $this->pricePlanService = new PricePlanService();
+    public function __construct(PricePlanService $pricePlanService){
+        $this->pricePlanService = $pricePlanService;
     }
 
     public function recommendCheapestPricePlans($smartMeterId, $limit = 0){
