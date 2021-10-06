@@ -23,17 +23,22 @@ class MeterReadingServiceTest extends TestCase
         MeterReadingServiceTest::$meterReadingService = new MeterReadingService(MeterReadingServiceTest::$meterReadingInitialize);
     }
 
-    public function test_getMeterReadings()
+    /**
+     * @test
+     */
+    public function Should_Return_Readings_For_Valid_Meter_Id()
     {
         $readings = MeterReadingServiceTest::$meterReadingService->getReadings("smart-meter-1");
-        $this->assertEquals(5, count($readings)); // TBD Assert count
+        $this->assertCount(5, $readings);
     }
 
-    public function test_storeMeterReadings()
+    /**
+     * @test
+     */
+    public function Should_Return_Empty_Array_For_Invalid_Meter_Id()
     {
-        $readings = MeterReadingServiceTest::$meterReadingService->getReadings("smart-meter-1");
-        print_r($readings);
-        $this->assertCount(2, $readings);
+        $readings = MeterReadingServiceTest::$meterReadingService->getReadings("unknown-id");
+        $this->assertCount(0, $readings);
     }
 
     public static function tearDownAfterClass(): void
