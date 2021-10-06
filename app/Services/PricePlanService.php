@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\InvalidMeterIdException;
 use App\Models\MeterReadingsInitialize;
 use App\Models\PricePlan;
 
@@ -59,6 +60,10 @@ class PricePlanService
 
     private function calculateAverageReading($electricityReadings)
     {
+        if(count($electricityReadings) <= 0){
+            throw new InvalidMeterIdException("No readings available");
+        }
+
         $newSummedReadings = 0;
         foreach (array($electricityReadings) as $electricityReading) {
             foreach ($electricityReading as ["readings" => $reading]) {

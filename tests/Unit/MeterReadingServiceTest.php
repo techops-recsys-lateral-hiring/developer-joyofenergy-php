@@ -26,7 +26,7 @@ class MeterReadingServiceTest extends TestCase
     /**
      * @test
      */
-    public function Should_Return_Readings_For_Valid_Meter_Id()
+    public function should_Return_Readings_For_Valid_Meter_Id()
     {
         $readings = MeterReadingServiceTest::$meterReadingService->getReadings("smart-meter-1");
         $this->assertCount(5, $readings);
@@ -35,7 +35,7 @@ class MeterReadingServiceTest extends TestCase
     /**
      * @test
      */
-    public function Should_Return_Empty_Array_For_Invalid_Meter_Id()
+    public function should_Return_Empty_Array_For_Invalid_Meter_Id()
     {
         $readings = MeterReadingServiceTest::$meterReadingService->getReadings("unknown-id");
         $this->assertCount(0, $readings);

@@ -38,7 +38,7 @@ class MeterReadingsInitialize extends Model
         return $this->smartMeterToPricePlanAccounts;
     }
 
-    public function generate($number)
+    private function generate($number)
     {
         $electricityReadings = [];
         for ($i = 0; $i < $number; $i++) {
