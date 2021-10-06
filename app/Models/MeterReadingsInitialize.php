@@ -21,7 +21,7 @@ class MeterReadingsInitialize extends Model
         $smartMeterIds = $this->getSmartMeterToPricePlanAccounts();
 
         foreach ($smartMeterIds as ["id" => $smartId]) {
-            $readings[] = ["smartMeterId" => $smartId, "electricityReadings" => $this->generate(2)];
+            $readings[] = ["smartMeterId" => $smartId, "electricityReadings" => $this->generate(5)];
         }
 
         return $readings;
