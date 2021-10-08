@@ -12,12 +12,6 @@ class MeterReadingService
     private $meterReadings;
     private $meterAssociatedReadings;
 
-    public function __construct(MeterReadingsInitialize $meterReadingInitializer)
-    {
-        $this->meterReadingInitializer = $meterReadingInitializer;
-        $this->meterReadings = $this->meterReadingInitializer->electricityReadings;
-    }
-
     public function getReadings($smartMeterId)
     {
         $readings = DB::table(ElectricityReadings::$tableName)
