@@ -10,22 +10,17 @@ use Illuminate\Support\Facades\DB;
 class PricePlanService
 {
     private $meterReadingService;
-    private $meterReadingInitializer;
 
-    public function __construct(MeterReadingService $meterReadingService, MeterReadingsInitialize $meterReadingInitializer)
+    public function __construct(MeterReadingService $meterReadingService)
     {
         $this->meterReadingService = $meterReadingService;
-        $this->meterReadingInitializer = $meterReadingInitializer;
     }
 
     public function getConsumptionCostOfElectricityReadingsForEachPricePlan($smartMeterId)
     {
         $getCostForAllPlans = [];
 
-        $readings = DB::table('electricity_readings')
-            ->join('smart_meters', 'electricity_readings.smart_meter_id', '=', 'smart_meters.id')
-            ->where('smart_meters.smartMeterId', '=', $smartMeterId)
-            ->get(['time', 'reading'])->toArray();
+        $readings = $this->meterReadingService->getReadings($smartMeterId);
 
         $pricePlans = DB::table('price_plans')->get(['supplier', 'unitRate'])->toArray();
 
