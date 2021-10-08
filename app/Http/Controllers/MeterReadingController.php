@@ -19,12 +19,7 @@ class MeterReadingController extends Controller
 
     public function getReading($smartMeterId)
     {
-        $readings = DB::table('electricity_readings')
-            ->join('smart_meters', 'electricity_readings.smart_meter_id', '=', 'smart_meters.id')
-            ->where('smart_meters.smartMeterId', '=', $smartMeterId)
-            ->get(['time', 'reading']);
-        return response()->json($readings);
-        // return response()->json($this->meterReadingService->getReadings($smartMeterId), 200);
+         return response()->json($this->meterReadingService->getReadings($smartMeterId), 200);
     }
 
     public function storeReadings(Request $request)

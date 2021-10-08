@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\ElectricityReadings;
 use App\Models\MeterReadingsInitialize;
+use Illuminate\Support\Facades\DB;
 
 class MeterReadingService
 {
@@ -18,14 +20,12 @@ class MeterReadingService
 
     public function getReadings($smartMeterId)
     {
-        $getElectricityReadings = $this->meterReadingInitializer->electricityReadings;
-        $smartMeterIdReadings = [];
-        foreach ($getElectricityReadings as $getElectricityReading) {
-            if ($getElectricityReading["smartMeterId"] == $smartMeterId) {
-                $smartMeterIdReadings = $getElectricityReading["electricityReadings"];
-            }
-        }
-        return $smartMeterIdReadings;
+        $readings = DB::table(ElectricityReadings::$tableName)
+            ->join('smart_meters', 'electricity_readings.smart_meter_id', '=', 'smart_meters.id')
+            ->where('smart_meters.smartMeterId', '=', $smartMeterId)
+            ->get(['time', 'reading']);
+
+        return $readings;
     }
 
     public function generateMeterAssociatedReadings()
