@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use App\Helpers\ModelHelper;
 use App\Models\MeterReadings;
+use App\Repository\ElectricityReadingRepository;
+use App\Repository\IElectricityReadingRepository;
+use App\Repository\IPricePlanRepository;
+use App\Repository\PricePlanRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ModelHelper::class, function () {
             return new ModelHelper("");
+        });
+
+        $this->app->bind(IElectricityReadingRepository::class, function (){
+            return new ElectricityReadingRepository();
+        });
+
+        $this->app->bind(IPricePlanRepository::class, function (){
+            return new PricePlanRepository();
         });
     }
 

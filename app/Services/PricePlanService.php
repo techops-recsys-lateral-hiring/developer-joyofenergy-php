@@ -3,14 +3,14 @@
 namespace App\Services;
 
 use App\Exceptions\InvalidMeterIdException;
-use App\Repository\PricePlanRepository;
+use App\Repository\IPricePlanRepository;
 
 class PricePlanService
 {
     private $meterReadingService;
     private $pricePlanRepository;
 
-    public function __construct(MeterReadingService $meterReadingService, PricePlanRepository $pricePlanRepository)
+    public function __construct(MeterReadingService $meterReadingService, IPricePlanRepository $pricePlanRepository)
     {
         $this->meterReadingService = $meterReadingService;
         $this->pricePlanRepository = $pricePlanRepository;

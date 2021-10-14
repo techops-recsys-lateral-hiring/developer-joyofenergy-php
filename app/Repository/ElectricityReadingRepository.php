@@ -7,7 +7,7 @@ use App\Models\SmartMeter;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class ElectricityReadingRepository
+class ElectricityReadingRepository implements IElectricityReadingRepository
 {
     public function getElectricityReadings($smartMeterId): Collection
     {

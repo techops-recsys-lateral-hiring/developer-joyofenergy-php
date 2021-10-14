@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Models\PricePlan;
 use Illuminate\Support\Facades\DB;
 
-class PricePlanRepository
+class PricePlanRepository implements IPricePlanRepository
 {
     public function getRandomPricePlanId()
     {
