@@ -19,10 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(ModelHelper::class, function () {
-            return new ModelHelper("");
-        });
-
         $this->app->bind(IElectricityReadingRepository::class, function (){
             return new ElectricityReadingRepository();
         });
