@@ -208,14 +208,12 @@ Tested on:
 
 ## Useful commands
 
-### Build & Run the project
+### Build & Run the application
 
 ```terminal
 $ ./deploy-joyenergy.php
-
-Above command will start the application on url `http://127.0.0.1:8000`.
 ```
-
+Above command will start the application on url `http://127.0.0.1:8000`.
 ### Run the tests
 
 ```terminal
