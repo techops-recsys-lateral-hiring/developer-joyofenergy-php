@@ -213,7 +213,7 @@ Tested on:
 ```terminal
 $ ./deploy-joyenergy.php
 ```
-Above command will start the application on url `http://127.0.0.1:8000`.
+Above command will start the application on url `http://127.0.0.1:8000`. Can be accessed using `http://localhost:8000` as well.
 ### Run the tests
 
 ```terminal
