@@ -98,7 +98,7 @@ Posting readings using CURL
 $ curl \
   -X POST \
   -H "Content-Type: application/json" \
-  "http://localhost:5000/readings/store" \
+  "http://localhost:8000/readings/store" \
   -d '{"smartMeterId":"smart-meter-0","electricityReadings":[{"time":"2020-11-11T08:00:00.0000000+00:00","reading":0.0503},{"time":"2020-11-12T08:00:00.0000000+00:00","reading":0.0213}]}'
 ```
 
@@ -121,7 +121,7 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:5000/readings/read/smart-meter-0"
+$ curl "http://localhost:8000/readings/read/smart-meter-0"
 ```
 
 Example output
@@ -151,7 +151,7 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:5000/price-plans/compare-all/smart-meter-0"
+$ curl "http://localhost:8000/price-plans/compare-all/smart-meter-0"
 ```
 
 Example output
@@ -182,7 +182,7 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:5000/price-plans/recommend/smart-meter-0?limit=2"
+$ curl "http://localhost:8000/price-plans/recommend/smart-meter-0?limit=2"
 ```
 
 Example output
