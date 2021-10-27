@@ -102,7 +102,7 @@ $ curl \
   -d '{"smartMeterId":"smart-meter-0","electricityReadings":[{"time":"2020-11-11T08:00:00.0000000+00:00","reading":0.0503},{"time":"2020-11-12T08:00:00.0000000+00:00","reading":0.0213}]}'
 ```
 
-The above command returns 200 OK and `{}`.
+The above command returns 201 OK and response as "Readings inserted successfully".
 
 ### Get Stored Readings
 
@@ -121,16 +121,15 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:8000/readings/read/smart-meter-0"
+$ curl "http://localhost:8000/readings/read/smart-meter-1"
 ```
 
 Example output
 
 ```json
 [
-  { "time": "2020-11-11T08:00:00.000000Z", "reading": 0.0503 },
-  { "time": "2020-11-12T08:00:00.000000Z", "reading": 0.0213 },
-  ...
+  { "time": "2020-11-14T08:00:00.0000000+00:00", "reading": "0.8998" },
+  { "time": "2020-11-15T08:00:00.0000000+00:00", "reading": "0.6023" }
 ]
 ```
 
@@ -151,17 +150,30 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:8000/price-plans/compare-all/smart-meter-0"
+$ curl "http://localhost:8000/price-plans/compare-all/smart-meter-1"
 ```
 
 Example output
 
 ```json
-{
-  "DrEvilsDarkEnergy": 94.87181867550794,
-  "TheGreenEco": 18.974363735101587,
-  "PowerForEveryone": 9.487181867550794
-}
+[
+    {
+        "key": "Dr Evil's Dark Energy",
+        "value": 0.4529635476463834
+    },
+    {
+        "key": "The Green Eco",
+        "value": 0.009059270952927669
+    },
+    {
+        "key": "Power for Everyone",
+        "value": 0.004529635476463834
+    },
+    {
+        "Current Supplier": "The Green Eco",
+        "SmartMeterId": "smart-meter-1"
+    }
+]
 ```
 
 ### View Recommended Price Plans for Usage
@@ -182,7 +194,7 @@ Parameters
 Retrieving readings using CURL
 
 ```console
-$ curl "http://localhost:8000/price-plans/recommend/smart-meter-0?limit=2"
+$ curl "http://localhost:8000/price-plans/recommend/smart-meter-1?limit=2"
 ```
 
 Example output
@@ -190,12 +202,12 @@ Example output
 ```json
 [
   {
-    "key": "PowerForEveryone",
-    "value": 9.487181867550794
+    "key": "Power For Everyone",
+    "value": 0.004529635476463834
   },
   {
-    "key": "TheGreenEco",
-    "value": 18.974363735101587
+    "key": "The Green Eco",
+    "value": 0.009059270952927669
   }
 ]
 ```
